@@ -41,6 +41,36 @@ const styles = StyleSheet.create({
         // flex: 4,
         marginRight: mobileW * .03
     },
+    SinglePageImageStyle: {
+        height: mobileW * .9,
+        alignSelf: "center",
+        aspectRatio: 1,
+        resizeMode: "contain",
+        marginTop: -mobileW * .1,
+        // width: mobileW,
+        // flex: 1,
+        // margin: mobileW * .008
+        // width: 200,
+        // flex: 1,
+        // marginRight: mobileW * .03
+    },
+    Container: {
+        backgroundColor: 'red',
+        height: mobileW * .5,
+        width: mobileW,
+        // alignContent: 'center',
+
+    },
+    SinglePageTextStyle: {
+        color: 'black',
+        fontWeight: 'bold',
+        textAlign: 'center',
+        justifyContent: 'center',
+        fontSize: mobileW * 0.04,
+        marginTop: mobileW * .05,
+        marginLeft: mobileW * .05,
+        marginRight: mobileW * .05,
+    }
 })
 
 export default styles;

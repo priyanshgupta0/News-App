@@ -1,13 +1,13 @@
-
-
 import React, { useState, useEffect } from 'react';
 import { View, FlatList, Modal, ScrollView, Text, Button, StyleSheet, ActivityIndicator, Dimensions, Switch, TextInput, SafeAreaView, Image, TouchableOpacity, TouchableHighlight } from 'react-native';
 import styles from '../Styles/stylesheet';
-
+import { useNavigation } from '@react-navigation/native'
 
 
 
 const Home = () => {
+
+    navigator = useNavigation();
 
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState();
@@ -51,35 +51,49 @@ const Home = () => {
 
     const renderItem = ({ item }) => {
         return (
-            <View style={[styles.CardStyle]}>
-                <View style={{ flexDirection: 'row' }} >
-                    <View style={{ flex: 1 }}>
-                        {item.urlToImage ?
-                            <Image
-                                source={{
-                                    uri:
-                                        item.urlToImage,
-                                }}
-                                style={[styles.CardImageStyle]}
-                            /> : <Image
-                                source={{
-                                    uri: data.articles[0].urlToImage,
-                                }}
-                                style={[styles.CardImageStyle]}
-                            />
-                        }
+            <TouchableOpacity onPress={() => {
+                navigator.navigate('SingleNewsPage',
+                    {
+                        name: item.source.name,
+                        author: item.author,
+                        title: item.title,
+                        description: item.description,
+                        url: item.url,
+                        urlToImage: item.urlToImage,
+                        publishedAt: item.publishedAt,
+                        content: item.content,
+                    });
+            }}>
+                <View style={[styles.CardStyle]}>
+                    <View style={{ flexDirection: 'row' }} >
+                        <View style={{ flex: 1 }}>
+                            {item.urlToImage ?
+                                <Image
+                                    source={{
+                                        uri:
+                                            item.urlToImage,
+                                    }}
+                                    style={[styles.CardImageStyle]}
+                                /> : <Image
+                                    source={{
+                                        uri: data.articles[0].urlToImage,
+                                    }}
+                                    style={[styles.CardImageStyle]}
+                                />
+                            }
+                        </View>
+                        <View style={{ flex: 1 }}>
+                            <Text style={[styles.CardTitleStyle]}>{item.title}</Text>
+                            <Text style={[styles.CardTitleStyle, { fontWeight: 'bold' }]}>{"By " + item.author}</Text>
+                            <Text style={[styles.CardTitleStyle, { fontWeight: 'bold' }]}>{"Published At : "}</Text>
+                            <Text style={[styles.CardTitleStyle, { fontWeight: '500', fontSize: Dimensions.get("screen").width * 0.03 }]}>{item.publishedAt}</Text>
+                        </View>
                     </View>
-                    <View style={{ flex: 1 }}>
-                        <Text style={[styles.CardTitleStyle]}>{item.title}</Text>
-                        <Text style={[styles.CardTitleStyle, { fontWeight: 'bold' }]}>{"By " + item.author}</Text>
-                        <Text style={[styles.CardTitleStyle, { fontWeight: 'bold' }]}>{"Published At : "}</Text>
-                        <Text style={[styles.CardTitleStyle, { fontWeight: '500', fontSize: Dimensions.get("screen").width * 0.03 }]}>{item.publishedAt}</Text>
+                    <View>
+                        <Text style={[styles.CardTitleStyle, { fontWeight: '400' }]}>{item.description}</Text>
                     </View>
-                </View>
-                <View>
-                    <Text style={[styles.CardTitleStyle, { fontWeight: '400' }]}>{item.description}</Text>
-                </View>
-            </View >
+                </View >
+            </TouchableOpacity>
         );
     };
 
