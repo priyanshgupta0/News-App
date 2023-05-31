@@ -38,6 +38,7 @@ const Test = ({ route }) => {
                     }
                     <Text style={[styles.SinglePageTextStyle, { fontSize: mobileW * .06 }]} >{Title}</Text>
                     <Text style={[styles.SinglePageTextStyle, { alignSelf: 'flex-end' }]} >By : {Author}</Text>
+                    <Text style={[styles.SinglePageTextStyle, { alignSelf: 'flex-start', fontSize: mobileW * .05 }]} >Description</Text>
                     <Text style={[styles.SinglePageTextStyle, { fontWeight: '400' }]} >{Description}</Text>
                     <Text style={[styles.SinglePageTextStyle, { alignSelf: 'flex-end' }]} >Published At : {PublishedAt}</Text>
                     <Text style={[styles.SinglePageTextStyle, { alignSelf: 'flex-start', fontSize: mobileW * .05 }]} >Content</Text>
